@@ -18,10 +18,11 @@ module WebPageParser
     ICONV = nil
     TITLE_RE = ORegexp.new('<meta name="DC.title" scheme="DCTERMS.URI" content="(.*)"', 'i')
     DATE_RE = ORegexp.new('<meta name="datemodified" content="(.*)"', 'i')
-    # CONTENT_RE = ORegexp.new('class="rte_gr_8">(.*?)<div id="user-options-bottom">', 'm')
-    CONTENT_RE = ORegexp.new('aside>(.*?)<ul class="keywords">', 'm')
-    STRIP_TAGS_RE = ORegexp.new('</?(a|span|div|img|tr|td|!--|table)[^>]*>','i')
+    DESC_RE = ORegexp.new('<meta name="description" content="(.*)" />')
+    CONTENT_RE = ORegexp.new('itemprop="articleBody"(.*)<div id="user-options-bottom">', 'm')
+    STRIP_TAGS_RE = ORegexp.new('</?(strong|br|a|span|div|img|tr|td|!--|table)[^>]*>','i')
     PARA_RE = Regexp.new(/<(p|h2)[^>]*>(.*?)<\/\1>/i)
+    KILL_CHARS_RE = ORegexp.new('[\r\n]+')
 
     private
     
@@ -37,6 +38,11 @@ module WebPageParser
     def content_processor
       @content = STRIP_TAGS_RE.gsub(@content, '')
       @content = @content.scan(PARA_RE).collect { |a| a[1] }
+
+      # Workaround => Problem regex matching first paragraph in the article.
+      # also content processing doesn't remove "&nbsp;", done
+      first_line = decode_entities(iconv(DESC_RE.match(page)[1].to_s))
+      @content = @content.unshift(first_line).map {|p| p.gsub('&nbsp;', " ")}
     end
     
   end
