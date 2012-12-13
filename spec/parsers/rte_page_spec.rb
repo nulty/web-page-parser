@@ -36,7 +36,7 @@ describe RtePageParserV1 do
       @valid_options = { 
         :url => 'http://www.rte.ie/news/2012/0718/aer-lingus-repeats-call-to-reject-ryanair-offer-business.html',
         :page => File.read("spec/fixtures/rte/aer-lingus-repeats-call-to-reject-ryanair-offer-business.html"),
-        :valid_hash => '803be530c7c3360d136b73e5531e9083'
+        :valid_hash => 'cdad460c9cc6d54fb54355da8a1f3a8a'
       }
       @pa = RtePageParserV1.new(@valid_options)
     end
@@ -46,7 +46,7 @@ describe RtePageParserV1 do
     end
     
     it "should parse the date in UTC" do
-      @pa.date.should == DateTime.parse("2012-07-18T10:28:38")
+      @pa.date.should == DateTime.parse("2012-07-18T14:27:45")
       @pa.date.zone.should == '+00:00'
     end
 
