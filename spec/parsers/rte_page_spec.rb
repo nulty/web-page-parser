@@ -36,7 +36,7 @@ describe RtePageParserV1 do
       @valid_options = { 
         :url => 'http://www.rte.ie/news/2012/0718/aer-lingus-repeats-call-to-reject-ryanair-offer-business.html',
         :page => File.read("spec/fixtures/rte/aer-lingus-repeats-call-to-reject-ryanair-offer-business.html"),
-        :valid_hash => 'cdad460c9cc6d54fb54355da8a1f3a8a'
+        :valid_hash => '501a0b9f8264c1510d1df0865059391c'
       }
       @pa = RtePageParserV1.new(@valid_options)
     end
@@ -52,12 +52,12 @@ describe RtePageParserV1 do
 
 
     it "should parse the content" do
-      @pa.content[1].should == "Aer Lingus has issued a statement this morning calling on shareholders to reject Ryanair's offer."
+      @pa.content[0].should == "Aer Lingus has issued a statement this morning calling on shareholders to reject Ryanair's offer."
 
-      @pa.content[2].should == "The company will be writing to shareholders in the next 14 days to set out in detail its reasons for rejecting the offer."
-      @pa.content[9].should == "Ryanair is seeking acceptance of the bid by 13 September."
+      @pa.content[2].should == "It believes reasons for European commission prohibition is now even stronger as it says the number of routes that Ryanair would monopolise has sharply increased."
+      @pa.content[9].should == "An investigation is also being carried out into Ryanair's current holding by the UK Competition Commission."
       @pa.content.last.should == "An investigation is also being carried out into Ryanair's current holding by the UK Competition Commission."
-      @pa.content.size.should == 11         
+      @pa.content.size.should == 10         
       @pa.hash.should == @valid_options[:valid_hash]
     end
   end
@@ -67,7 +67,7 @@ describe RtePageParserV1 do
       @valid_options = { 
         :url => 'http://www.rte.ie/news/2012/1213/drink-driving-figures.html',
         :page => File.read("spec/fixtures/rte/drink-driving-figures.html"),
-        :valid_hash => '7ab04fedfa177059c5057790b11c23c6'
+        :valid_hash => '7d2106e2c3e0bdb8837730bd989b2b08'
       }
       @pa = RtePageParserV1.new(@valid_options)
     end
@@ -83,12 +83,12 @@ describe RtePageParserV1 do
 
 
     it "should parse the content" do
-      @pa.content[1].should == "Drink-driving arrests by gardaí have fallen by just over 1,800 in the past year after reduced alcohol levels for drivers were introduced."
+      @pa.content[0].should == "Drink-driving arrests by gardaí have fallen by just over 1,800 in the past year after reduced alcohol levels for drivers were introduced."
 
-      @pa.content[2].should == "Figures show the number of arrests for the offence have halved in the past five years."
-      @pa.content[9].should == "Irish, Latvian and Lithuanian nationals were among the main repeat offenders."
+      @pa.content[2].should == "Releasing official figures today, garda\303\255 said incidents are gradually reducing and are based on a time period after the alcohol permitted in a driver's system was reduced from 80 to 50mg per 100ml of blood last November."
+      @pa.content[8].should == "Irish, Latvian and Lithuanian nationals were among the main repeat offenders."
       @pa.content.last.should == "Irish, Latvian and Lithuanian nationals were among the main repeat offenders."
-      @pa.content.size.should == 10         
+      @pa.content.size.should == 9         
       @pa.hash.should == @valid_options[:valid_hash]
     end
   end
@@ -98,7 +98,7 @@ describe RtePageParserV1 do
       @valid_options = { 
         :url => 'http://www.rte.ie/news/2012/1213/gallagher-death.html',
         :page => File.read("spec/fixtures/rte/gallagher-death.html"),
-        :valid_hash => 'af49aedf5940a1bd3b2de525ee160564'
+        :valid_hash => '7240fb4211ec799fdbe62976e27f0233'
       }
       @pa = RtePageParserV1.new(@valid_options)
     end
@@ -114,12 +114,12 @@ describe RtePageParserV1 do
 
 
     it "should parse the content" do
-      @pa.content[1].should == "The 15-year-old sister of Erin Gallagher, who died in October by suicide in Ballybofey, Co Donegal, was found dead last night."
+      @pa.content[0].should == "The 15-year-old sister of Erin Gallagher, who died in October by suicide in Ballybofey, Co Donegal, was found dead last night."
 
-      @pa.content[2].should == "Shannon Gallagher is also believed to have died by suicide."
-      @pa.content[9].should == "\"Currently the HSE is liaising with the family in relation to this incident and all supports are being made available to provide assistance at this difficult time.\""
+      @pa.content[2].should == "Donegal VEC confirmed it had been made aware of \"the tragic death of Shannon Gallagher RIP, a fourth-year student, at Finn Valley College Stranorlar\"."
+      @pa.content[9].should == "It also extended its sympathies to the family and friends of Shannon."
       @pa.content.last.should == "Pieta Mid-WestPieta Mid-West, Ardaulin, Mungret, Co LimerickTel: 061-484444 | 061-484646"
-      @pa.content.size.should == 20
+      @pa.content.size.should == 19
       @pa.hash.should == @valid_options[:valid_hash]
     end
   end

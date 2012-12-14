@@ -39,10 +39,8 @@ module WebPageParser
       @content = STRIP_TAGS_RE.gsub(@content, '')
       @content = @content.scan(PARA_RE).collect { |a| a[1] }
 
-      # Workaround => Problem regex matching first paragraph in the article.
-      # also content processing doesn't remove "&nbsp;", done
-      first_line = decode_entities(iconv(DESC_RE.match(page)[1].to_s))
-      @content = @content.unshift(first_line).map {|p| p.gsub('&nbsp;', " ")}
+      # Content processing doesn't remove "&nbsp;", done
+      @content = @content.map {|p| p.gsub('&nbsp;', " ")}
     end
     
   end
