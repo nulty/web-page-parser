@@ -1,6 +1,7 @@
 module WebPageParser
   class IrishtimesPageParserFactory < WebPageParser::ParserFactory
-    URL_RE = ORegexp.new("(www\.)?irishtimes\.com/[a-z-]+/[a-z-]+/[0-9]{4}/[0-9]{4}/[0-9]+.[a-z-]{4}")
+    
+    URL_RE = ORegexp.new("irishtimes\.com.*html")
 
     INVALID_URL_RE = ORegexp.new("sport|comment")
 
