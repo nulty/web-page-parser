@@ -1,6 +1,6 @@
 module WebPageParser
   class RtePageParserFactory < WebPageParser::ParserFactory
-    URL_RE = ORegexp.new("(www\.)?rte\.ie/[a-z-]+/[0-9]{4}/[0-9]{4}/[a-z-]+.[a-z-]{4}")
+    URL_RE = ORegexp.new("(www\.)?rte\.ie\/(?:[a-z-]+\/)+[0-9]{4}\/[0-9]{4}\/[0-9a-z-]+.[a-z-]\/")
     INVALID_URL_RE = ORegexp.new("/sport/")
 
     def self.can_parse?(options)
@@ -20,7 +20,7 @@ module WebPageParser
     DATE_RE = ORegexp.new('<meta name="datemodified" content="(.*)"', 'i')
     DESC_RE = ORegexp.new('<meta name="description" content="(.*)" />')
     CONTENT_RE = ORegexp.new('itemprop="articleBody"(.*)<div id="user-options-bottom">', 'm')
-    STRIP_TAGS_RE = ORegexp.new('</?(strong|br|a|span|div|img|tr|td|!--|table)[^>]*>','i')
+    STRIP_TAGS_RE = ORegexp.new('</?(iframe|strong|br|a|span|div|img|tr|td|!--|table)[^>]*>','i')
     PARA_RE = Regexp.new(/<(p|h2)[^>]*>(.*?)<\/\1>/i)
     KILL_CHARS_RE = ORegexp.new('[\r\n]+')
 
