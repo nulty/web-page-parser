@@ -21,7 +21,7 @@ module WebPageParser
     TITLE_RE = ORegexp.new('<h1>(.+?)</h1>')
     DATE_RE = ORegexp.new('<meta name="datemodified" content="(.*)"', 'i')
     CONTENT_RE = ORegexp.new('class="left-column">(.*?)<div class="right-column">', 'm')
-    STRIP_TAGS_RE = ORegexp.new('</?(strong|a|span|div|img|tr|td|!--|table)[^>]*>','i')
+    STRIP_TAGS_RE = ORegexp.new('</?(iframe|strong|a|span|div|img|tr|td|!--|table)[^>]*>','i')
     PARA_RE = Regexp.new(/<(p)[^>]*>(.*?)<\/\1>/i)
 
     private
