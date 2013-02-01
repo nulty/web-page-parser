@@ -7,7 +7,7 @@ include WebPageParser
 describe RtePageParserFactory do
   before do
     @valid_urls = [
-                   "http://www.rte.ie/news/2012/0718/aer-lingus-repeats-call-to-reject-ryanair-offer-business.html"
+                   "http://www.rte.ie/news/2013/0128/364816-gardai-liaise-with-psni-in-detective-murder-probe/"
                   ]
     @invalid_urls = [
                      "http://www.rte.ie/gaa"
